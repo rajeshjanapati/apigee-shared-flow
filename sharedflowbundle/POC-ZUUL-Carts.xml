@@ -5,23 +5,8 @@
     <LastModifiedAt>1690918310984</LastModifiedAt>
     <BasePaths>/carts</BasePaths>
     <Policies>
-        <Policy>jsonpayload</Policy>
-        <Policy>GenerateSessionId</Policy>
-        <Policy>Lookup-Cache-1</Policy>
-        <Policy>Assign-Message-2</Policy>
-        <Policy>Populate-Cache-2</Policy>
         <Policy>VAK-Verify-API-Key</Policy>
-        <Policy>AM-PrivateKey</Policy>
         <Policy>VJWT-VerifyJWT</Policy>
-        <Policy>EV-ExtractVariables</Policy>
-        <Policy>EV-IdentityFilterForTokenExtraction</Policy>
-        <Policy>RF-ValidateURIParameter</Policy>
-        <Policy>EV-Extract-URI</Policy>
-        <Policy>EV-Extract-URI-Variables</Policy>
-        <Policy>JS-StatusCode</Policy>
-        <Policy>AM-StatusCode</Policy>
-        <Policy>FC-JWT-Token</Policy>
-        <Policy>RF-SessionID-Error</Policy>
     </Policies>
     <ProxyEndpoints>
         <ProxyEndpoint>default</ProxyEndpoint>

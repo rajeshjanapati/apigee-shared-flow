@@ -5,9 +5,9 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>apigee</groupId>
-	<artifactId>git-cicd</artifactId>
+	<artifactId>sharedflow-jwt</artifactId>
 	<version>v1</version>
-	<name>git-cicd</name>
+	<name>sharedflow-jwt</name>
 	<packaging>pom</packaging>
 	<pluginRepositories>
 		<pluginRepository>
@@ -40,6 +40,7 @@
 				<apigee.hosturl>https://apigee.googleapis.com</apigee.hosturl>
 				<apigee.apiversion>v1</apigee.apiversion>
 				<apigee.org>esi-apigee-x-394004</apigee.org>
+                <apigee.apitype>sharedflow</apigee.apitype>
 				<apigee.options>async</apigee.options>
 				<apigee.bearer>${bearer}</apigee.bearer>
 			</properties>
