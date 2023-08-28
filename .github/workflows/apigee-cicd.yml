@@ -111,7 +111,7 @@ jobs:
 
     # Maven Package & Upload Apigee Budle Config in Apigee
       - name: mvn config
-        run: mvn apigee-enterprise:configure -q -Pproxy_de -Dorg=$APIGEE_ORG -Denv=$APIGEE_ENV
+        run: mvn apigee-enterprise:configure -q -Pproxy_de -Dorg=esi-apigee-x-394004 -Denv=eval  -Ddeployment.suffix=$APIGEE_DEPLOYMENT_SUFFIX
 
     # Maven Deploy uploaded proxy package in to Apigeee
       - name: mvn deploy proxy xhybrid
