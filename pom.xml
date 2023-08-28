@@ -1,216 +1,128 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project
-	xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<!--
+ Copyright 2023 Google LLC
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+      http://www.apache.org/licenses/LICENSE-2.0
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>apigee</groupId>
-	<artifactId>sharedflow-jwt</artifactId>
-	<version>v1</version>
-	<name>sharedflow-jwt</name>
-	<packaging>pom</packaging>
-	<pluginRepositories>
-		<pluginRepository>
-			<id>central</id>
-			<name>Maven Plugin Repository</name>
-			<url>https://repo1.maven.org/maven2</url>
-			<layout>default</layout>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-			<releases>
-				<updatePolicy>never</updatePolicy>
-			</releases>
-		</pluginRepository>
-	</pluginRepositories>
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<org.slf4j.simpleLogger.defaultLogLevel>info</org.slf4j.simpleLogger.defaultLogLevel>
-		<project.root.dir>${basedir}</project.root.dir>
-		<target.root.dir>${basedir}/target</target.root.dir>
-		<apigee.deploy.version>1</apigee.deploy.version>
-	</properties>
-	<profiles>
-		<profile>
-			<id>proxy_de</id>
-			<properties>
-				<apigee.profile>proxy_de</apigee.profile>
-				<apigee.env>eval</apigee.env>
-				<apigee.hosturl>https://apigee.googleapis.com</apigee.hosturl>
-				<apigee.apiversion>v1</apigee.apiversion>
-				<apigee.org>esi-apigee-x-394004</apigee.org>
-               			<apigee.apitype>sharedflow</apigee.apitype>
-				<apigee.options>async</apigee.options>
-				<apigee.bearer>${bearer}</apigee.bearer>
-			</properties>
-		</profile>
-		<profile>
-			<!-- Next Generation SaaS and hybrid -->
-			<id>config_de</id>
-			<properties>
-				<apigee.profile>config_de</apigee.profile>
-				<apigee.env>eval</apigee.env>
-				<apigee.hosturl>https://apigee.googleapis.com</apigee.hosturl>
-				<apigee.apiversion>v1</apigee.apiversion>
-				<apigee.org>esi-apigee-x-394004</apigee.org>
-				<apigee.config.dir>${dir}</apigee.config.dir>
-				<apigee.config.options>update</apigee.config.options>
-				<apigee.bearer>${bearer}</apigee.bearer>
-			</properties>
-		</profile>
-	</profiles>
-	<build>
-		<plugins>
-			<!-- copy the full apiproxy folder to target folder -->
-			<plugin>
-				<artifactId>maven-resources-plugin</artifactId>
-				<version>2.6</version>
-				<executions>
-					<execution>
-						<id>copy-resources</id>
-						<phase>process-resources</phase>
-						<goals>
-							<goal>copy-resources</goal>
-						</goals>
-						<configuration>
-							<overwrite>true</overwrite>
-							<resources>
-								<resource>
-									<!--source -->
-									<directory>${project.root.dir}</directory>
-									<filtering>true</filtering>
-									<includes>
-										<include>apiproxy/**</include>
-									</includes>
-								</resource>
-							</resources>
-							<!--target -->
-							<outputDirectory>${target.root.dir}</outputDirectory>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>io.apigee.build-tools.enterprise4g</groupId>
-				<artifactId>apigee-edge-maven-plugin</artifactId>
-				<version>2.4.4</version>
-				<executions>
-					<execution>
-						<id>configure-bundle-step</id>
-						<phase>package</phase>
-						<goals>
-							<goal>configure</goal>
-						</goals>
-					</execution>
-					<!--deploy bundle -->
-					<execution>
-						<id>deploy-bundle-step</id>
-						<phase>install</phase>
-						<goals>
-							<goal>deploy</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-                <groupId>com.apigee.edge.config</groupId>
-                <artifactId>apigee-config-maven-plugin</artifactId>
-                <version>2.4.4</version>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>apigee</groupId>
+    <artifactId>sample-hello-cicd-sf</artifactId>
+    <version>v1</version>
+    <name>sample-hello-cicd-sf</name>
+    <packaging>pom</packaging>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>central</id>
+            <name>Maven Plugin Repository</name>
+            <url>https://repo1.maven.org/maven2</url>
+            <layout>default</layout>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <releases>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+        </pluginRepository>
+    </pluginRepositories>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <org.slf4j.simpleLogger.defaultLogLevel>info</org.slf4j.simpleLogger.defaultLogLevel>
+        <project.root.dir>${basedir}</project.root.dir>
+        <target.root.dir>${basedir}/target</target.root.dir>
+        <apigee.deploy.version>2.3.5</apigee.deploy.version>
+    </properties>
+
+    <profiles>
+        <profile>
+            <id>proxy_de</id>
+            <properties>
+                <apigee.profile>proxy_de</apigee.profile>
+                <apigee.env>eval</apigee.env>
+                <apigee.hosturl>https://apigee.googleapis.com</apigee.hosturl>
+                <apigee.apiversion>v1</apigee.apiversion>
+                <apigee.apitype>sharedflow</apigee.apitype>
+                <apigee.org>esi-apigee-x-394004</apigee.org>
+                <apigee.options>override</apigee.options> 
+                <apigee.bearer>${bearer}</apigee.bearer>
+            </properties>
+        </profile>
+    </profiles>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>io.apigee.build-tools.enterprise4g</groupId>
+                    <artifactId>apigee-edge-maven-plugin</artifactId>
+                    <version>${apigee.deploy.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        <plugins>
+            <!-- copy the full sharedflowbundle folder to target folder -->
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.6</version>
                 <executions>
                     <execution>
-                        <id>create-config-targetserver</id>
-                        <phase>verify</phase>                        
+                        <id>copy-resources</id>
+                        <phase>process-resources</phase>
                         <goals>
-                            <goal>targetservers</goal>
+                            <goal>copy-resources</goal>
                         </goals>
+                        <configuration>
+                            <overwrite>true</overwrite>
+                            <resources>
+                                <resource>
+                                    <!--source -->
+                                    <directory>${project.root.dir}</directory>
+                                    <filtering>true</filtering>
+                                    <includes>
+                                        <include>sharedflowbundle/**</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                            <!--target -->
+                            <outputDirectory>${target.root.dir}</outputDirectory>
+                        </configuration>
                     </execution>
-                     <execution>
-                        <id>create-config-kvm</id>
-                        <phase>verify</phase>                        
-                        <goals>
-                            <goal>keyvaluemaps</goal>
-                        </goals>
-                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>io.apigee.build-tools.enterprise4g</groupId>
+                <artifactId>apigee-edge-maven-plugin</artifactId>
+                <version>${apigee.deploy.version}</version>
+                <executions>
                     <execution>
-                        <id>create-config-keystores</id>
-                        <phase>verify</phase>                        
+                        <id>configure-bundle-step</id>
+                        <phase>package</phase>
                         <goals>
-                            <goal>keystores</goal>
+                            <goal>configure</goal>
                         </goals>
                     </execution>
+                    <!--deploy bundle -->
                     <execution>
-                        <id>create-config-aliases</id>
-                        <phase>verify</phase>                        
+                        <id>deploy-bundle-step</id>
+                        <phase>install</phase>
                         <goals>
-                            <goal>aliases</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>create-config-references</id>
-                        <phase>verify</phase>                        
-                        <goals>
-                            <goal>references</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>create-config-resourcefiles</id>
-                        <phase>install</phase>                        
-                        <goals>
-                            <goal>resourcefiles</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>create-config-apiproduct</id>
-                        <phase>install</phase>                        
-                        <goals>
-                            <goal>apiproducts</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>create-config-developer</id>
-                        <phase>install</phase>                        
-                        <goals>
-                            <goal>developers</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>create-config-app</id>
-                        <phase>install</phase>                        
-                        <goals>
-                            <goal>apps</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>create-config-reports</id>
-                        <phase>install</phase>                        
-                        <goals>
-                            <goal>reports</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>import-app-keys</id>
-                        <phase>install</phase>                        
-                        <goals>
-                            <goal>importKeys</goal>
+                            <goal>deploy</goal>
                         </goals>
                     </execution>
                 </executions>
-            </plugin>   
-			<!-- cleaning dirs -->
-			<plugin>
-				<artifactId>maven-clean-plugin</artifactId>
-				<version>2.5</version>
-				<executions>
-					<execution>
-						<id>auto-clean-init</id>
-						<phase>initialize</phase>
-						<goals>
-							<goal>clean</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>        
-		</plugins>
-	</build>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>
