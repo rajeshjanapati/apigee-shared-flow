@@ -1,28 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<ProxyEndpoint name="default">
-    <PreFlow name="PreFlow">
-        <Request/>
-        <Response>
-            <Step>
-                <Name>AM-PrivateKey</Name>
-            </Step>
-            <Step>
-                <Name>GJWT-GenerateJWT</Name>
-            </Step>
-            <Step>
-                <Name>AM-JWTVariable</Name>
-            </Step>
-        </Response>
-    </PreFlow>
-    <Flows/>
-    <PostFlow name="PostFlow">
-        <Request/>
-        <Response/>
-    </PostFlow>
-    <HTTPProxyConnection>
-        <BasePath>/v1/login</BasePath>
-    </HTTPProxyConnection>
-    <RouteRule name="default">
-        <TargetEndpoint>default</TargetEndpoint>
-    </RouteRule>
-</ProxyEndpoint>
+<SharedFlow name="default">
+    <Step>
+        <Name>Verify-API-Key</Name>
+    </Step>
+    <Step>
+        <Name>Quota</Name>
+    </Step>
+    <Step>
+        <Name>Spike-Arrest</Name>
+    </Step>
+    <Step>
+        <Name>AM-Set-Headers</Name>
+    </Step>
+</SharedFlow>
