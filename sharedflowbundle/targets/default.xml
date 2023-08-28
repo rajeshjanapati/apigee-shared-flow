@@ -9,7 +9,5 @@
         <Request/>
         <Response/>
     </PostFlow>
-    <HTTPTargetConnection>
-        <URL>http://httpbin.org</URL>
-    </HTTPTargetConnection>
+    <HTTPTargetConnection/>
 </TargetEndpoint>
