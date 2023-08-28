@@ -41,7 +41,7 @@
         <org.slf4j.simpleLogger.defaultLogLevel>info</org.slf4j.simpleLogger.defaultLogLevel>
         <project.root.dir>${basedir}</project.root.dir>
         <target.root.dir>${basedir}/target</target.root.dir>
-        <apigee.deploy.version>2.4.4</apigee.deploy.version>
+        <apigee.deploy.version>2.4.1</apigee.deploy.version>
     </properties>
 
     <profiles>
@@ -49,11 +49,11 @@
             <id>proxy_de</id>
             <properties>
                 <apigee.profile>proxy_de</apigee.profile>
-                <apigee.env>eval</apigee.env>
                 <apigee.hosturl>https://apigee.googleapis.com</apigee.hosturl>
                 <apigee.apiversion>v1</apigee.apiversion>
                 <apigee.apitype>sharedflow</apigee.apitype>
                 <apigee.org>esi-apigee-x-394004</apigee.org>
+                <apigee.env>eval</apigee.env>
                 <apigee.options>override</apigee.options> 
                 <apigee.bearer>${bearer}</apigee.bearer>
             </properties>
