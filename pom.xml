@@ -40,7 +40,7 @@
 				<apigee.hosturl>https://apigee.googleapis.com</apigee.hosturl>
 				<apigee.apiversion>v1</apigee.apiversion>
 				<apigee.org>esi-apigee-x-394004</apigee.org>
-                <apigee.apitype>sharedflow</apigee.apitype>
+               			<apigee.apitype>sharedflow</apigee.apitype>
 				<apigee.options>async</apigee.options>
 				<apigee.bearer>${bearer}</apigee.bearer>
 			</properties>
