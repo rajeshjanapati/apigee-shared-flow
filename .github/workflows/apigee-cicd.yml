@@ -109,9 +109,9 @@ jobs:
       - name: mvn package
         run: mvn process-resources -q -Pproxy_de -Dcommit=$GIT_COMMIT -Dbranch=$GIT_BRANCH -Dauthor=$AUTHOR_EMAIL
 
-    # # Maven Package & Upload Apigee Budle Config in Apigee
-    #   - name: mvn config
-    #     run: mvn apigee-enterprise:configure -q -Pproxy_de -Dorg=$APIGEE_ORG -Denv=$APIGEE_ENV
+    # Maven Package & Upload Apigee Budle Config in Apigee
+      - name: mvn config
+        run: mvn apigee-enterprise:configure -q -Pproxy_de -Dorg=$APIGEE_ORG -Denv=$APIGEE_ENV
 
     # Maven Deploy uploaded proxy package in to Apigeee
       - name: mvn deploy proxy xhybrid
