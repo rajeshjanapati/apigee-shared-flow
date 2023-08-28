@@ -1,66 +1,24 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<ProxyEndpoint name="default">
-    <PreFlow name="PreFlow">
-        <Request/>
-        <Response/>
-    </PreFlow>
-    <Flows>
-        <Flow name="Populate_Cache">
-            <Description/>
-            <Request>
-                <Step>
-                    <Name>GenerateSessionId</Name>
-                </Step>
-            </Request>
-            <Response/>
-            <Condition>(proxy.pathsuffix MatchesPath "/populate-cache") and (request.verb = "POST")</Condition>
-        </Flow>
-        <Flow name="lookup_cache">
-            <Description/>
-            <Request>
-                <Step>
-                    <Name>RF-SessionID-Error</Name>
-                </Step>
-                <Step>
-                    <Name>Lookup-Cache-1</Name>
-                </Step>
-            </Request>
-            <Response>
-                <Step>
-                    <Name>Assign-Message-2</Name>
-                </Step>
-            </Response>
-            <Condition>(proxy.pathsuffix MatchesPath "/lookup-cache") and (request.verb = "GET")</Condition>
-        </Flow>
-        <Flow name="cache_target">
-            <Description/>
-            <Request>
-            </Request>
-            <Response>
-                <Step>
-                    <Name>GenerateSessionId</Name>
-                </Step>
-                <Step>
-                    <Name>Populate-Cache-2</Name>
-                </Step>
-                <Step>
-                    <Name>jsonpayload</Name>
-                </Step>
-            </Response>
-            <Condition>(proxy.pathsuffix MatchesPath "/get") and (request.verb = "GET")</Condition>
-        </Flow>
-    </Flows>
-    <PostFlow name="PostFlow">
-        <Request/>
-        <Response/>
-    </PostFlow>
-    <HTTPProxyConnection>
-        <BasePath>/carts</BasePath>
-        <VirtualHost>secure</VirtualHost>
-    </HTTPProxyConnection>
-    <RouteRule name="default">
-        <Condition>(proxy.pathsuffix MatchesPath "/get") and (request.verb = "GET")</Condition>
-        <TargetEndpoint>default</TargetEndpoint>
-    </RouteRule>
-    <RouteRule name="no-target"/>
-</ProxyEndpoint>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright 2023 Google LLC
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+      http://www.apache.org/licenses/LICENSE-2.0
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+<SharedFlow name="default">
+    <Step>
+        <Name>VA-VerifyAPIKey</Name>
+    </Step>
+    <Step>
+        <Name>Q-Quota</Name>
+    </Step>
+    <Step>
+        <Name>SA-RateLimit</Name>
+    </Step>
+</SharedFlow>
