@@ -11,13 +11,7 @@
     <ProxyEndpoints>
         <ProxyEndpoint>default</ProxyEndpoint>
     </ProxyEndpoints>
-    <Resources>
-        <Resource>jsc://GenerateSessionId.js</Resource>
-        <Resource>jsc://StoreInCache.js</Resource>
-        <Resource>jsc://jsonpayload.js</Resource>
-        <Resource>jsc://EV-Extract-URI-Variables.js</Resource>
-        <Resource>jsc://JS-StatusCode.js</Resource>
-    </Resources>
+    <Resources/>
     <TargetEndpoints>
         <TargetEndpoint>default</TargetEndpoint>
     </TargetEndpoints>
